@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<meta charset="utf-8" />
+
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+
+
+<body>
+	<h1>Creation de l'instance</h1>
+	<h3></h3>
+	<h2></h2>
+	<h4></h4>
+	<span></span>
+	<p><input type="button" value="start game" id="poke" /></p>
+	<div class="pull">
+		<div class="cartes" id="1"></div>
+		<div class="cartes" id="2"></div>
+		<div class="cartes" id="3"></div>
+		<div class="cartes" id="4"></div>
+		<div class="cartes" id="5"></div>
+		<div class="cartes" id="6"></div>
+		<div class="cartes" id="7"></div>
+		<div class="cartes" id="8"></div>
+		<div class="cartes" id="9"></div>
+		<div class="cartes" id="10"></div>
+		<div class="cartes" id="11"></div>
+		<div class="cartes" id="12"></div>
+		<div class="cartes" id="13"></div>
+		<div class="cartes" id="14"></div>
+		<div class="cartes" id="15"></div>
+		<div class="cartes" id="16"></div>
+		<div class="cartes" id="17"></div>
+		<div class="cartes" id="18"></div>
+		<div class="cartes" id="19"></div>
+		<div class="cartes" id="20"></div>
+		<div class="cartes" id="21"></div>
+		<div class="cartes" id="22"></div>
+		<div class="cartes" id="23"></div>
+		<div class="cartes" id="24"></div>
+		<div class="cartes" id="25"></div>
+	</div>
+
+	<p><input type="hidden" value="start game" id="tour" /></p>
+	<p><input type="hidden" value="get_card" id="get_card" /></p>
+	<div class="" id="pioo"></div>
+</body>
+
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+var socket = io.connect('http://localhost:8080');
+var res = [];
+var pio;
+var segment_pull = [];
+count = 8;
+socket.on('message', function(message) {
+
+	for (var i = 0; i < 7; i++) {
+		res.push(message[i].split("_"));
+	}
+
+	$("#poke").remove();
+	$('#1').addClass(res[0][0]);
+	$("#1" ).append("<p>"+res[0][1]+"</p>");
+	$("#1").data("value",res[0][0]+"_"+res[0][1]);
+
+	$('#2').addClass(res[1][0]);
+	$("#2" ).append("<p>"+res[1][1]+"</p>");
+	$("#2").data('value', res[1][0]+"_"+res[1][1]);
+
+	$('#3').addClass(res[2][0]);
+	$("#3" ).append("<p>"+res[2][1]+"</p>");
+	$("#3").data('value', res[2][0]+"_"+res[2][1]);
+
+	$('#4').addClass(res[3][0]);
+	$("#4" ).append("<p>"+res[3][1]+"</p>");
+	$("#4").data('value', res[3][0]+"_"+res[3][1]);
+
+	$('#5').addClass(res[4][0]);
+	$("#5" ).append("<p>"+res[4][1]+"</p>");
+	$("#5").data('value', res[4][0]+"_"+res[4][1]);
+
+	$('#6').addClass(res[5][0]);
+	$("#6" ).append("<p>"+res[5][1]+"</p>");
+	$("#6").data('value', res[5][0]+"_"+res[5][1]);
+
+	$('#7').addClass(res[6][0]);
+	$("#7" ).append("<p>"+res[6][1]+"</p>");
+	$("#7").data('value', res[6][0]+"_"+res[6][1]);
+
+	// $(".pull").append("<div class ='cartes bleu' id='"+count+"'><p>7</p></div>")
+	// $("#8").data('value', res[6][0]+"_"+res[6][1]);
+
+	$('#tour').attr('type', 'button');
+	$("h3").append("Le joueur 1 dois dois lancer la partie")
+})
+
+socket.on('players', function(players) {
+	$("h2").append(players);
+})
+socket.on('pioche', function(pioche) {
+	$("#tour").remove();
+	pio = pioche.split("_");
+	$('#pioo').addClass(pio[0]);
+	$("#pioo" ).append("<p>"+pio[1]+"</p>");
+	$("h3").remove();
+	// $("h4").append("Le joueur 2 dois jouer sa carte");
+	$('#get_card').attr('type', 'button');
+})
+
+socket.on('card_accept', function(card_accept) {
+	pioo = card_accept.split("_");
+	$( "#pioo" ).removeClass();	
+	$( "#pioo" ).empty();
+	$('#pioo').addClass(pioo[0]);
+	$("#pioo" ).append("<p>"+pioo[1]+"</p>");
+})
+
+socket.on('card_accept_1', function(contentPanelId) {
+	$("#"+contentPanelId).remove();
+})
+
+
+socket.on('card_denied', function(card_denied) {
+	$("h1").remove();
+	$("span").append("<h3>pioche ou joue une autre carte</h3>");
+})
+socket.on('card_pull', function(card_pull) {
+	segment_pull = card_pull.split("_");
+	$("#"+count).addClass(segment_pull[0]);
+	$("#"+count).data('value', card_pull);;
+	$("#"+count).text(segment_pull[1]);;
+	count++;
+})
+
+$('#poke').click(function () {
+	socket.emit('message', 'Salut serveur, ça va ?');
+})
+
+$('#tour').click(function () {
+	socket.emit('tour', 'Salut serveur, ça va ?');
+})
+
+$('.cartes').click(function (card_play) {
+	$("h2").remove();
+	var contentPanelId = $(this).attr("id");
+	var card_play = $(this).data('value');
+	socket.emit('card_play', card_play, contentPanelId);
+})
+$('#get_card').click(function (card_play) {
+	socket.emit('get_card', "get_card");
+})
+
+</script>
+</html>

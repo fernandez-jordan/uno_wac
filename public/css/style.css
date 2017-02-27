@@ -1,0 +1,162 @@
+@media (min-width: 768px) {
+
+  .container {
+
+    width: 750px;
+
+  }
+
+}
+
+@media (min-width: 992px) {
+
+  .container {
+
+    width: 970px;
+
+  }
+
+}
+
+@media (min-width: 1200px) {
+
+  .container {
+
+    width: 100%;
+
+  }
+
+}
+#home-page{
+  background-color: #001939;
+  height: 100vh;
+}
+
+.bleu{
+    height: 200px;
+    width: 100px;
+    background-color: blue;
+    margin: 10px;
+    display: inline-block;
+    font-size: 20px;
+    color: black;
+     text-align: center;
+}
+.rouge{
+    height: 200px;
+    width: 100px;
+    background-color: red;
+    margin: 10px;
+    display: inline-block;
+    font-size: 20px;
+    color: black;
+     text-align: center;
+}
+.vert{
+    height: 200px;
+    width: 100px;
+    background-color: green;
+    margin: 10px;
+    display: inline-block;
+    font-size: 20px;
+    color: black;
+     text-align: center;
+}
+.jaune{
+    height: 200px;
+    width: 100px;
+    background-color: yellow;
+    margin: 10px;
+    display: inline-block;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+}
+.neutre{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/plus4.png");
+}
+.joker{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/joker.png");
+}
+.noTurnRed{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/noTurnRed.png");
+}
+.noTurnBlue{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/noTurnBlue.png");
+}
+.noTurnYellow{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/noTurnYellow.png");
+}
+.noTurnGreen{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/noTurnGreen.png");
+}
+.changeTurnRed{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/changeTurnRed.png");
+}
+.changeTurnBlue{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/changeTurnBlue.png");
+}
+.changeTurnGreen{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/changeTurnGreen.png");
+}
+.changeTurnYellow{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/changeTurnYellow.png");
+}
+.plus2Blue{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/plus2Blue.png");
+}
+.plus2Red{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/plus2Red.png");
+}
+.plus2Green{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/plus2Green.png");
+}
+.plus2Yellow{
+    height: 200px;
+    width: 100px;
+    display: inline-block;
+    background-image: url("../images/plus2Yellow.png");
+}
+#pioo {
+margin-left: 50vw;
+margin-top: 300px;
+}
